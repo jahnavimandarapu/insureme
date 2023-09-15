@@ -24,7 +24,15 @@ stages {
       sh 'docker build -t mandarapujahnavi/insureme-app:1.0 .'
     }
       
-           }
+       }
+  stage ('docker image push'){
+    steps {
+      withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerHubPwd')]) {
+      sh 'docker login -u mandarapujahnavi -p ${dockerHubPwd}'
+      }
+      sh 'docker push mandarapujahnavi/insureme-app:1.0'   
+    }
+  }
   }
 }
   
