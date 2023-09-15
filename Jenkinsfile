@@ -33,6 +33,9 @@ stages {
       sh 'docker push mandarapujahnavi/insureme-app:1.0'   
     }
   }
+  stage ('Deploy the Insureme app to Prodserver'){
+       
+  }
   }
 }
   
