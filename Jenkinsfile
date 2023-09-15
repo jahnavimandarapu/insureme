@@ -23,8 +23,7 @@ stages {
     steps {
       sh 'docker build -t mandarapujahnavi/insureme-app:1.0 .'
     }
-      
-       }
+            }
   stage ('docker image push'){
     steps {
       withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'hub2docker')]) {
@@ -33,8 +32,12 @@ stages {
       sh 'docker push mandarapujahnavi/insureme-app:1.0'   
     }
   }
-        
+  stage ('application deployment as container'){
+   steps {
+    ansiblePlaybook become: true, credentialsId: 'ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'prod.inv', playbook: 'deploy.yml'
+   }
   }
+  
   }
 }
   
