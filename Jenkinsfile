@@ -27,8 +27,8 @@ stages {
        }
   stage ('docker image push'){
     steps {
-      withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerHubPwd')]) {
-      sh 'docker login -u mandarapujahnavi -p ${dockerHubPwd}'
+      withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'hub2docker')]) {
+      sh 'docker login -u mandarapujahnavi -p ${hub2docker}'
       }
       sh 'docker push mandarapujahnavi/insureme-app:1.0'   
     }
