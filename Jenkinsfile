@@ -34,7 +34,7 @@ stages {
   }
   stage ('application deployment as container'){
    steps {
-    ansiblePlaybook become: true, credentialsId: 'ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'prod.inv', playbook: 'deploy.yml'
+    ansiblePlaybook credentialsId: 'ssh-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'deploy.yml'
    }
   }
   
